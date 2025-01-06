@@ -1,0 +1,48 @@
+#include <stdio.h>
+#define MAX 5
+
+void Nhap_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\nHay nhap gia tri cua arr[%d]: ",i);
+		scanf("%d",&arr[i]);
+	}
+}
+void Xuat_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\t%d",arr[i]);
+	}
+}
+
+
+void Number_One(int arr[],int n) {
+	int Max1 = 0;
+	int Max2 = 0;
+	for(int i = 0; i < n ; i++) {
+		if(Max1 < arr[i]) {
+			Max1 = arr[i];
+		}
+	}
+	for(int i = 0;i < n;i++){
+		if(Max2 < arr[i] && arr[i] != Max1) {
+			Max2 = arr[i];
+		}
+}
+printf("\nSo lon thu nhat trong mang la:%d",Max1);
+printf("\nSo lon thu hai trong mang la:%d",Max2);
+}
+
+int main() {
+	int arr[MAX];
+	int n;
+	do {
+		printf("\nHay nhap so luong cua mang: ");
+		scanf("%d",&n);
+		if(n < 1 || n > MAX) {
+			printf("Gia tri ban vua nhap khong hop le,hay nhap lai: ");
+		}
+	} while(n < 1 || n > MAX);
+	Nhap_Mang(arr,n);
+	printf("\nCac gia tri ban vua nhap se cho ra:");
+	Xuat_Mang(arr,n);
+	Number_One(arr,n);
+}

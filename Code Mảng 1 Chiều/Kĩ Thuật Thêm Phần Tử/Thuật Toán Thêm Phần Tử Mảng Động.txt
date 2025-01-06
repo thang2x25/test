@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+void Nhap_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\nHay nhap gia tri cho arr[%d]: ",i);
+		scanf("%d",&arr[i]);
+	}
+}
+
+void Xuat_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\t%d",arr[i]);
+	}
+}
+
+void Them_Phan_Tu(int arr[],int *n,int giatri,int vitri) 
+ {
+        realloc(arr, (*n + 1) * sizeof(int)); //arr là con trỏ cần nới rộng vùng nhớ(ko dùng NULL vì đã được cấp phát)
+	for(int i = *n - 1; i >= vitri; i--) 
+	{
+		arr[i + 1] = arr[i]; 
+	}
+	arr[vitri] = giatri;
+	(*n)++;
+}
+
+int main() {
+	int n;
+	int *arr;
+	arr = (int *) realloc(NULL,n * sizeof(int));
+	do {
+		printf("Hay nhap so luong phan tu: ");
+		scanf("%d",&n);
+		if(n < 1) {
+			printf("\nGia tri ban vua nhap khong hop le,hay nhap lai: ");
+		}
+	} while(n < 1);
+	printf("\n\tNhap Mang: ");
+	Nhap_Mang(arr,n);
+	printf("\n\tXuat Mang: ");
+	Xuat_Mang(arr,n);
+	int giatri;
+	printf("\n\nHay nhap gia tri can them phan tu vao:");
+	scanf("%d",&giatri);
+	int vitri;
+	printf("\n\nHay nhap vi tri can them vao phan tu: ");
+	scanf("%d",&vitri);
+	Them_Phan_Tu(arr,&n,giatri,vitri);
+	Xuat_Mang(arr,n);
+	free(arr);
+}

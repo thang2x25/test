@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+void Nhap_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\nHay nhap gia tri cho arr[%d]: ",i);
+		scanf("%d",&arr[i]);
+	}
+}
+
+void Xuat_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\t%d",arr[i]);
+	}
+}
+
+void Xoa_Phan_Tu(int arr[],int *n,int vitri) {
+	for(int i = vitri + 1; i < *n; i++) {
+		arr[i - 1] = arr[i];
+	}
+	realloc(arr, (*n - 1) * sizeof(int));
+	(*n)--;
+	//Or
+	/*(*n)--;
+	realloc(arr, (*n)* sizeof(int));*/
+}
+
+int main() {
+	int n;
+	int *arr;
+	arr = (int *) realloc(NULL,n * sizeof(int));
+	do {
+		printf("Hay nhap so luong phan tu: ");
+		scanf("%d",&n);
+		if(n < 1) {
+			printf("\nGia tri ban vua nhap khong hop le,hay nhap lai: ");
+		}
+	} while(n < 1);
+	int vitri;
+	printf("\n\tNhap Mang: ");
+	Nhap_Mang(arr,n);
+	printf("\n\tXuat Mang: ");
+	Xuat_Mang(arr,n);
+	printf("\nHay nhap vi tri can xoa: ");
+	scanf("%d",&vitri);
+	Xoa_Phan_Tu(arr,&n,vitri);
+	Xuat_Mang(arr,n);
+	free(arr);
+}

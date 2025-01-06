@@ -1,0 +1,53 @@
+#include<stdio.h>
+#define MAX 5
+#include<stdbool.h>
+
+void Nhap_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\nHay nhap gia tri cho arr[%d]: ",i);
+		scanf("%d",&arr[i]);
+	}
+}
+
+void Xuat_Mang(int arr[],int n ) {
+	for(int i = 0; i < n; i++) {
+		printf("\t%d",arr[i]);
+	}
+}
+
+bool Kiem_Tra(int x){
+	while(x >= 10){
+		x /= 10;
+	}
+	if(x % 2 == 0){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+void Liet_Ke(int arr[],int n){
+	for(int i = 0;i < n;i++){
+		if(Kiem_Tra(arr[i]) == true){
+			printf("\t%d",arr[i]);
+		}
+	}
+}
+int main() {
+	int arr[MAX];
+	int n;
+	do {
+		printf("Hay nhap so luong cua mang: ");
+		scanf("%d",&n);
+		if(n < 1 || n > MAX) {
+			printf("Gia tri ban vua nhap khong hop le,hay nhap lai: ");
+		}
+	} while(n < 1 || n > MAX);
+	printf("Nhap gia tri cho mang: ");
+	Nhap_Mang(arr,n);
+	printf("Xuat cac phan tu mang: ");
+	Xuat_Mang(arr,n);
+	printf("\nCac phan tu co chu so dau tien la chan trong mang la: ");
+	Liet_Ke(arr,n);
+}

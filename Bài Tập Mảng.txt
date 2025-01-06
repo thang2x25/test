@@ -1,0 +1,157 @@
+Nhap_Mang()
+{
+echo -e "Nhap so luong cho mang: \c"
+read n
+for (( i=0; i<n; i++ ))
+do
+  echo -n "a[$i]= "
+  read a[$i]
+done
+}
+
+Xuat_Mang()
+{
+for (( i=0; i<n; i++ ))
+do
+  echo -ne "a[$i]=${a[$i]}"
+done
+  echo -e"\n"
+}
+
+#Bai 13
+Sap_Xep_Mang()
+{
+for (( i=0; i<n-1; i++ ))
+do
+ for (( j=$i+1; j<n; j++ ))
+ do
+  if (( a[$i] > a[$j] ))
+  then
+    temp=${a[$i]}
+    a[$i]=${a[$j]}
+    a[$j]=$temp
+  fi
+ done
+ done
+}
+
+#Bai 14
+Them_Phan_Tu()
+{
+echo -e "Nhap vi tri can them: \c"
+read vitri
+echo -e "Nhap gia tri cua vi tri can them: \c"
+read giatri
+for (( i=n-1; i>=vitri; i-- ))
+do
+  a[$i + 1]=${a[$i]}
+done
+  a[$vitri]=$giatri
+  n=$n+1
+}
+
+Bai 15
+Xoa_Phan_Tu()
+{
+echo -e "Nhap vi tri can xoa \c"
+read vitri
+for (( i=$vitri; i<n-1; i++ ))
+do
+  a[$i]=${a[$i + 1]}
+done
+  n=$n-1 
+}
+
+#Bai 17
+Xoa_So_Nho_Hon()
+{
+echo -e "Hay nhap mot so: \c"
+read x
+for (( i=n-1; i>=0; i-- ))
+do
+  if (( a[$i] < $x ))
+  then
+    for (( j=$i; j<n-1; j++ ))
+    do
+      a[$j]=${a[$j + 1]}
+    done
+      n=$n-1
+  fi
+done
+}
+
+#Bai 16
+Sap_Xep_Mang_Le_Tang_Dan()
+{
+for (( i=0; i<n; i++ ))
+do
+ if (( a[$i] % 2 != 0 ))
+ then
+  for (( j=$i+1; j<n; j++ ))
+  do
+   if (( a[$j] % 2 !=0 ))
+   then
+    if (( a[$i] > a[$j] ))
+    then
+      temp=${a[$i]}
+      a[$i]=${a[$j]}
+      a[$j]=$temp
+    fi
+   fi
+  done
+ fi
+done
+}
+
+#Bai 20
+Dem_So_Lan_Xuat_Hien_Gia_Tri()
+{
+count=0
+echo -e "Hay nhap so can tim: \c"
+read x
+for (( i=0; i<n; i++ ))
+do
+  if (( a[$i] == $x ))
+  then
+    count=$[ $count + 1 ]
+  fi
+done
+echo "So lan gia tri ban can tim xuat hien trong mang la:$count lan"
+}
+
+So_Lon_Thu_Hai_Trong_Mang()
+{
+Max1=0
+Max2=0
+for (( i=0; i<n; i++ ))
+do
+  if (( $Max1 < ${a[$i]} ))
+  then
+    Max1=${a[$i]}
+  fi
+done
+for (( i=0; i<n; i++ ))
+do
+  if [[ $Max2 -lt ${a[$i]} && ${a[$i]} -ne $Max1 ]]
+  then
+    Max2=${a[$i]}
+  fi
+done
+echo "So lon nhat trong mang la:$Max1"
+echo "So lon thu hai trong mang la:$Max2"
+}
+
+echo "NHAP MANG: "
+Nhap_Mang
+
+chan=0
+le=0
+for (( i=0; i<n; i++ ))
+do
+ if (( i % 2 == 0 ))
+ then
+  chan=( $i )
+ else
+  le=( $i )
+ fi
+done

@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include <stdbool.h>
+#define MAX 5
+
+void Nhap_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\nHay nhap gia tri cua arr[%d]: ",i);
+		scanf("%d",&arr[i]);
+	}
+}
+
+void Xuat_Mang(int arr[],int n) {
+	for(int i = 0; i < n; i++) {
+		printf("\t%d",arr[i]);
+	}
+}
+
+bool So_Nguyen_To(int n) {
+	if(n == 2) {
+		return true;
+	} else if(n < 2) {
+		return false;
+	} else if(n > 2) {
+		for(int i = 2; i < n; i++) {
+			if(n % i == 0) {
+				return false;
+			}
+		}
+	}
+}
+
+bool Kiem_Tra_So_Nguyen_To(int arr[],int n) {
+	bool Kiem_Tra = false;
+	for(int i = 0; i < n; i++) {
+		if(So_Nguyen_To(arr[i]) == true) {
+			Kiem_Tra = true;
+			break;
+		}
+	}
+	return Kiem_Tra;
+}
+
+int main() {
+	int n;
+	int arr[MAX];
+	do {
+		printf("Hay nhap mot so: ");
+		scanf("%d",&n);
+		if(n < 1 || n > MAX) {
+			printf("So da nhap khong hop le,hay nhap lai: ");
+		}
+	} while(n < 1 || n > MAX);
+	printf("\nHay nhap gia tri cho cac phan tu cua mang: ");
+	Nhap_Mang(arr,n);
+	printf("\nCac gia tri ban vua nhap se cho ra: ");
+	Xuat_Mang(arr,n);
+	printf("\n\t\t%d",Kiem_Tra_So_Nguyen_To(arr,n));
+	if(Kiem_Tra_So_Nguyen_To(arr,n) == true) {
+		printf("\nMang co ton tai so nguyen to");
+	} else {
+		printf("\nMang khong ton tai so nguyen to");
+	}
+}
